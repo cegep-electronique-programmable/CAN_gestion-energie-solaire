@@ -63,14 +63,10 @@ Les étudiants seront répartis en groupes de travail et se verront attribuer de
   - Afficher les données des autres noeuds (panneaux solaires, batterie, température, vent, onduleur).
   - Permettre le contrôle global du système via CAN.
   - Si le système de protection contre le vent est activé, il doit arrêté le système (SYSTEME INACTIF).
-  - 
   - Message sortant CAN ID : 0x120
 
 Chaque groupe devra concevoir, développer et intégrer son propre noeud dans le système global de gestion d'énergie solaire autonome.
 Tous les groupes devront participer à l'intégration de leur noeud dans le système.
-
-### ID des messages
-
 
 ## Évaluation
 
@@ -91,5 +87,5 @@ Pour réaliser ce projet, vous aurez besoin des ressources suivantes :
 
 ## Remarques Finales
 
-Ce projet offre une occasion unique d'appliquer vos compétences en électronique programmable, en communication CAN et en gestion d'énergie. Travaillez en équipe, soyez créatifs et amusez-vous tout en développant un système de gestion d'énergie solaire autonome fonctionnel.
+Ce projet offre une occasion unique d'appliquer vos compétences en résolutions de problèmes à base électronique programmable et de mettre en application vos connaissances en communication CAN. Travaillez en équipe, soyez créatifs et amusez-vous tout en développant un système de gestion d'énergie solaire !
 
