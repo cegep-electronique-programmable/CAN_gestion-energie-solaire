@@ -1,4 +1,6 @@
-# Projet de Gestion d'Énergie Solaire Autonome
+# Projet de Gestion d'Énergie Solaire Autonome pour la planète MARS
+
+![image](https://github.com/cegep-electronique-programmable/CAN_gestion-energie-solaire/assets/5272111/8ac6260f-b47a-47df-9ae8-7f6ec530bfed)
 
 ## Objectif du Projet
 
@@ -20,93 +22,54 @@ Le système de gestion d'énergie solaire autonome est composé des éléments s
 
 Les étudiants seront répartis en groupes de travail et se verront attribuer des noeuds spécifiques du système. Voici les détails des tâches assignées à chaque groupe :
 
-- Noeud Panneaux Solaires (Utilisation de PIC ou ESP) :
+- Noeud Panneaux Solaires :
   - Mesurer la production d'énergie solaire en Watts.
-  - Envoyer des données au noeud de l'interface utilisateur via CAN.
+  - Utiliser un potentiomètre pour simuler la puissance générée.
+  - Message sortant avec la puissance actuelle et moyenne.
+  - Message sortant CAN ID : 0x1A0
+  - Le noeud ne fonctionne que si le système est en fonctionnement (SYSTEME ACTIF)
+  - Sinon, il passe en mode "PROTECTION"
 
-- Noeud Batterie (Utilisation de PIC ou ESP) :
+- Noeud Batterie :
   - Mesurer l'état de charge (SOC) de la batterie en pourcentage (%).
-  - Gérer la charge/décharge de la batterie en fonction de la demande d'énergie.
-  - Envoyer des données au noeud de l'interface utilisateur via CAN.
+  - Utiliser un potentiomètre pour simuler l'état de la charge.
+  - Message sortant avec l'état de charge de la batterie et la tendance (charge ou décharge).
+  - Message sortant CAN ID : 0x180
+  - Le noeud ne fonctionne que si le système est en fonctionnement (SYSTEME ACTIF)
 
-- Noeud Capteur de Température (Utilisation de PIC ou ESP)
+- Noeud Capteur de Température
   - Mesurer la température ambiante en degrés Celsius.
+  - Utiliser un potentiomètre pour simuler la température.
   - Contrôler le chauffage et le refroidissement en fonction de la température.
-  - Envoyer des données au noeud de l'interface utilisateur via CAN.
+  - Message sortant avec la température et l'état du système (chauffage, refroidissement ou arrêté)
+  - Message sortant CAN ID : 0x140
+  - Le noeud ne fonctionne que si le système est en fonctionnement (SYSTEME ACTIF)
     
-- Noeud Onduleur (Utilisation de PIC ou ESP) :
+- Noeud Onduleur :
   - Convertir l'énergie DC en AC et vice versa.
-  - Activer/désactiver l'onduleur en fonction des besoins en énergie.
-  - Envoyer des données au noeud de l'interface utilisateur via CAN.
+  - Utiliser un bouton à 2 positions pour simuler l'état de l'onduleur.
+  - Message sortant indique si l'onduleur est actif.
+  - Le noeud ne fonctionne que si le système est en fonctionnement (SYSTEME ACTIF) et qu'il reste de l'énergie dans la batterie.
+
+- Noeud Capteur de Vent :
+  - Mesurer la vitesse du vent en mètres par seconde.
+  - Utiliser un potentiomètre pour simuler la vitesse du vent.
+  - Message sortant avec la vitesse du vent et l'état du système de protection.
+  - Le noeud fonctionne en permanence
+  - Message sortant CAN ID : 0x160
 
 - Noeud Interface Utilisateur (Utilisation d'ESP) :
   - Développer une interface utilisateur pour surveiller et contrôler le système.
-  - Afficher les données des autres noeuds (panneaux solaires, batterie, température, onduleur).
+  - Afficher les données des autres noeuds (panneaux solaires, batterie, température, vent, onduleur).
   - Permettre le contrôle global du système via CAN.
-
-- Noeud Capteur de Vent (Utilisation de PIC ou ESP) :
-  - Mesurer la vitesse du vent en mètres par seconde.
-  - Activer/désactiver la protection contre le vent en cas de besoin.
-  - Envoyer des données au noeud de l'interface utilisateur via CAN.
+  - Si le système de protection contre le vent est activé, il doit arrêté le système (SYSTEME INACTIF).
+  - 
+  - Message sortant CAN ID : 0x120
 
 Chaque groupe devra concevoir, développer et intégrer son propre noeud dans le système global de gestion d'énergie solaire autonome.
 Tous les groupes devront participer à l'intégration de leur noeud dans le système.
 
 ### ID des messages
-
-Noeud Onduleur :
-- Message sortant CAN ID : 0x100
-- Message sortant : Demande de mise en marche/arrêt de l'onduleur (prioritaire pour la sécurité du système).
-
-Noeud Capteur de Courant :
-- Message sortant CAN ID : 0x110
-- Message sortant : Alarme en cas de surintensité (prioritaire pour éviter les dommages électriques).
-
-Noeud Capteur de Tension :
-- Message sortant CAN ID : 0x120
-- Message sortant : Alarme en cas de sous-tension (prioritaire pour la sécurité électrique).
-
-Noeud Interface Utilisateur :
-- Message sortant CAN ID : 0x130
-- Message sortant : Retours d'état, rapports de production d'énergie, etc. (prioritaire pour l'interaction avec l'utilisateur).
-
-Noeud Contrôleur de Charge Solaire :
-- Message sortant CAN ID : 0x140
-- Message sortant : Commandes de charge (charge rapide, flottante, arrêt).
-
-Noeud Capteur de Température :
-- Message sortant CAN ID : 0x150
-- Message sortant : Activation/désactivation du chauffage/refroidissement.
-
-Noeud Capteur de Vent :
-- Message sortant CAN ID : 0x160
-- Message sortant : Activation/désactivation de la protection contre le vent.
-
-Noeud Capteur de Niveau d'Eau :
-- Message sortant CAN ID : 0x170
-- Message sortant : Commandes de pompage d'eau.
-
-Noeud Batterie 1 :
-- Message sortant CAN ID : 0x180
-- Message sortant : État de charge (SOC) calculé de la batterie.
-
-Noeud Batterie 2 :
-- Message sortant CAN ID : 0x190
-- Message sortant : État de charge (SOC) calculé de la batterie.
-
-Noeud Panneaux Solaires 1 :
-- Message sortant CAN ID : 0x1A0
-- Message sortant : Mesure de la production d'énergie solaire (Watts).
-
-Noeud Panneaux Solaires 2 :
-- Message sortant CAN ID : 0x1B0
-- Message sortant : Mesure de la production d'énergie solaire (Watts).
-
-Noeud Capteur de Luminosité :
-- Message sortant CAN ID : 0x1C0
-- Message sortant : Activation/désactivation de l'éclairage extérieur.
-
-Cette priorisation permet de s'assurer que les messages les plus critiques sont transmis avec des IDs plus faibles, assurant ainsi que les actions cruciales soient traitées en priorité dans le système.
 
 
 ## Évaluation
